@@ -14,6 +14,14 @@
 
 撒库拉大家啊考虑到
 
+啊数据库打火机可视电话风机款的哈
+
+手机卡上的接口
+
+当升科技发货时间咖啡壶代发任务i把饭卡
+
+获得数据库换肤大师尽快哈
+
 The bridge (`src/bridge/`, ~31 files) connects Claude Code CLI sessions to
 remote IDE extensions (VS Code, JetBrains) and the claude.ai web UI. It is
 gated behind `feature('BRIDGE_MODE')` which defaults to `false`.
@@ -139,27 +147,37 @@ Created `src/bridge/stub.ts` with:
 - `isBridgeAvailable()` → always returns `false`
 - `noopBridgeHandle` — silent no-op `ReplBridgeHandle`
 - `noopBridgeLogger` — silent no-op `BridgeLogger`
-## Available for any future code that needs a safe fallback when bridge is off.
+
+Available for any future code that needs a safe fallback when bridge is off.
+
+---
+
 ## Bridge Activation (Future Work)
+
 To enable the bridge:
+
 ### 1. Environment Variable
 ```bash
 export CLAUDE_CODE_BRIDGE_MODE=true
 ```
+
 ### 2. Authentication Requirements
 - Must be logged in to claude.ai with an active subscription
-(`isClaudeAISubscriber()` must return `true`)
+  (`isClaudeAISubscriber()` must return `true`)
 - OAuth tokens obtained via `claude auth login` (needs `user:profile` scope)
 - GrowthBook gate `tengu_ccr_bridge` must be enabled for the user's org
+
 ### 3. IDE Extension
 - VS Code: Claude Code extension (connects via the bridge's Session-Ingress layer)
 - JetBrains: Similar integration (same protocol)
 - Web: `claude.ai/code?bridge={environmentId}` URL
+
 ### 4. Network / Ports
 - **Session-Ingress**: WebSocket (`wss://`) or SSE for reads; HTTPS POST for writes
 - **API base**: Production `api.claude.ai` (configured via OAuth config)
 - Dev overrides: `CLAUDE_BRIDGE_BASE_URL`, localhost uses `ws://` and `/v2/` paths
 - QR code displayed in terminal links to `claude.ai/code?bridge={envId}`
+
 ### 5. Running Remote Control
 ```bash
 # Single session (tears down when session ends)
@@ -172,10 +190,12 @@ claude remote-control "my-project"
 claude remote-control --spawn worktree
 claude remote-control --spawn same-dir
 ```
+
 ### 6. Additional Flags
 - `--remote-control [name]` / `--rc [name]` — Start REPL with bridge pre-enabled
 - `--debug-file <path>` — Write debug log to file
 - `--session-id <id>` — Resume an existing session
+
 ---
 
 
@@ -220,4 +240,3 @@ Both Chrome paths:
 | CLI works in terminal-only mode                     | ✅ Bridge is purely additive                        |
 | Chrome paths don't crash                            | ✅ Separate dynamic imports, only on explicit flags |
 | Stub available for safety                           | ✅ Created `src/bridge/stub.ts`                     |
-
