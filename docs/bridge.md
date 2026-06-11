@@ -6,6 +6,14 @@
 
 阿是金坷垃就开了
 
+可接受的金坷垃建设大街阿拉登记卡啦
+
+萨达捡垃圾阿是垦利街道考拉
+
+撒娇恐龙当家阿卡丽
+
+撒库拉大家啊考虑到
+
 The bridge (`src/bridge/`, ~31 files) connects Claude Code CLI sessions to
 remote IDE extensions (VS Code, JetBrains) and the claude.ai web UI. It is
 gated behind `feature('BRIDGE_MODE')` which defaults to `false`.
@@ -24,11 +32,11 @@ The v2 path: create session → POST `/bridge` for JWT → SSE + CCRClient direc
 ### Authentication
 1. **OAuth tokens** — claude.ai subscription required (`isClaudeAISubscriber()`)
 2. **JWT** — Session-Ingress tokens (`sk-ant-si-` prefixed) with `exp` claims.
- `jwtUtils.ts` decodes and schedules proactive refresh before expiry.
+jwtUtils.ts` decodes and schedules proactive refresh before expiry.
 3. **Trusted Device token** — `X-Trusted-Device-Token` header for elevated
- security tier sessions. Enrolled via `trustedDevice.ts`.
+ecurity tier sessions. Enrolled via `trustedDevice.ts`.
 4. **Environment secret** — base64url-encoded `WorkSecret` containing
- `session_ingress_token`, `api_base_url`, git sources, auth tokens.
+session_ingress_token`,` api_base_url`, git sources, auth tokens.
 
 Dev override: `CLAUDE_BRIDGE_OAUTH_TOKEN` and `CLAUDE_BRIDGE_BASE_URL`
 (ant-only, `process.env.USER_TYPE === 'ant'`).
@@ -52,7 +60,7 @@ Dedup: `BoundedUUIDSet` tracks recent posted/inbound UUIDs to reject echoes
 and re-deliveries.
 ### Lifecycle
 1. **Entitlement check**: `isBridgeEnabled()` / `isBridgeEnabledBlocking()` →
- GrowthBook gate `tengu_ccr_bridge` + OAuth subscriber check
+rowthBook gate `tengu_ccr_bridge` + OAuth subscriber check
 2. **Session creation**: `createBridgeSession()` → POST to API
 3. **Transport init**: v1 `HybridTransport` or v2 `SSETransport` + `CCRClient`
 4. **Message pump**: Read inbound via transport, write outbound via batch
@@ -131,36 +139,27 @@ Created `src/bridge/stub.ts` with:
 - `isBridgeAvailable()` → always returns `false`
 - `noopBridgeHandle` — silent no-op `ReplBridgeHandle`
 - `noopBridgeLogger` — silent no-op `BridgeLogger`
-
-Available for any future code that needs a safe fallback when bridge is off.
----
-
+## Available for any future code that needs a safe fallback when bridge is off.
 ## Bridge Activation (Future Work)
-
 To enable the bridge:
-
 ### 1. Environment Variable
 ```bash
 export CLAUDE_CODE_BRIDGE_MODE=true
 ```
-
 ### 2. Authentication Requirements
 - Must be logged in to claude.ai with an active subscription
-  (`isClaudeAISubscriber()` must return `true`)
+(`isClaudeAISubscriber()` must return `true`)
 - OAuth tokens obtained via `claude auth login` (needs `user:profile` scope)
 - GrowthBook gate `tengu_ccr_bridge` must be enabled for the user's org
-
 ### 3. IDE Extension
 - VS Code: Claude Code extension (connects via the bridge's Session-Ingress layer)
 - JetBrains: Similar integration (same protocol)
 - Web: `claude.ai/code?bridge={environmentId}` URL
-
 ### 4. Network / Ports
 - **Session-Ingress**: WebSocket (`wss://`) or SSE for reads; HTTPS POST for writes
 - **API base**: Production `api.claude.ai` (configured via OAuth config)
 - Dev overrides: `CLAUDE_BRIDGE_BASE_URL`, localhost uses `ws://` and `/v2/` paths
 - QR code displayed in terminal links to `claude.ai/code?bridge={envId}`
-
 ### 5. Running Remote Control
 ```bash
 # Single session (tears down when session ends)
@@ -173,12 +172,10 @@ claude remote-control "my-project"
 claude remote-control --spawn worktree
 claude remote-control --spawn same-dir
 ```
-
 ### 6. Additional Flags
 - `--remote-control [name]` / `--rc [name]` — Start REPL with bridge pre-enabled
 - `--debug-file <path>` — Write debug log to file
 - `--session-id <id>` — Resume an existing session
-
 ---
 
 
@@ -211,6 +208,8 @@ Both Chrome paths:
 - Cannot crash normal operation because they're entirely separate code paths
 - Have no dependency on the bridge feature flag
 ---
+
+
 ## Verification Summary
 
 | Check                                               | Status                                             |
