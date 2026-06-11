@@ -1,7 +1,21 @@
 # Architecture
 > Deep-dive into how Claude Code is structured internally.
 
-撒库拉大家啊恐龙当家阿萨金卡溜达鸡了哈否加大号风机手打合计理发生发剂说法几哈手机卡发哈登记卡
+---
+
+## High-Level Overview
+
+Claude Code is a terminal-native AI coding assistant built as a single-binary CLI. The architecture follows a pipeline model:
+
+```
+User Input → CLI Parser → Query Engine → LLM API → Tool Execution Loop → Terminal UI
+```
+
+The entire UI layer is built with **React + Ink** (React for the terminal), making it a fully reactive CLI application with components, hooks, state management, and all the patterns you'd expect in a React web app — just rendered to the terminal.
+
+---
+
+
 ## Core Pipeline
 ### 1. Entrypoint (`src/main.tsx`)
 The CLI parser is built with [Commander.js](https://github.com/tj/commander.js) (`@commander-js/extra-typings`). On startup, it:
@@ -58,7 +72,10 @@ Claude Code uses a **React context + custom store** pattern:
 | Selectors         | `src/state/`                    | Derived state functions                     |
 | Change Observers  | `src/state/onChangeAppState.ts` | Side-effects on state changes               |
 
-## The `AppState` object is passed into tool contexts, giving tools access to conversation history, settings, and runtime state.
+The `AppState` object is passed into tool contexts, giving tools access to conversation history, settings, and runtime state.
+---
+
+
 ## UI Layer
 ### Components (`src/components/`, ~140 components)
 - Functional React components using Ink primitives (`Box`, `Text`, `useInput()`)
@@ -153,9 +170,10 @@ Claude Code uses a **single-threaded event loop** (Bun/Node.js model) with:
 - Web Workers or child processes for CPU-intensive tasks (gRPC, etc.)
 - Tool concurrency safety — each tool declares `isConcurrencySafe()` to indicate if it can run in parallel with other tools
 ---
+
+
 ## See Also
 - [Tools Reference](tools.md) — Complete catalog of all 40 agent tools
 - [Commands Reference](commands.md) — Complete catalog of all slash commands
 - [Subsystems Guide](subsystems.md) — Bridge, MCP, permissions, skills, plugins, and more
 - [Exploration Guide](exploration-guide.md) — How to navigate this codebase
-
