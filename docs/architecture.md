@@ -1,28 +1,7 @@
 # Architecture
 > Deep-dive into how Claude Code is structured internally.
----
 
-## High-Level Overview
-
-Claude Code is a terminal-native AI coding assistant built as a single-binary CLI. The architecture follows a pipeline model:
-撒库拉基督教阿卡丽就撒考拉
-啊数据库连接撒库拉大家考拉
-撒库拉大家啊上课了
-撒大声地撒阿斯达撒
-```
-User Input → CLI Parser → Query Engine → LLM API → Tool Execution Loop → Terminal UI
-```
-
-The entire UI layer is built with **React + Ink** (React for the terminal), making it a fully reactive CLI application with components, hooks, state management, and all the patterns you'd expect in a React web app — just rendered to the terminal.
-jdahjadhjskahdajkhakdjhakajhdajkshdjkashdjkadzxcxz
-ajdkljsakl
-salkdjakldjal
-asjkldjaskldja
-ajlkdjakl
-dadasdadad
----
-
-
+撒库拉大家啊恐龙当家阿萨金卡溜达鸡了哈否加大号风机手打合计理发生发剂说法几哈手机卡发哈登记卡
 ## Core Pipeline
 ### 1. Entrypoint (`src/main.tsx`)
 The CLI parser is built with [Commander.js](https://github.com/tj/commander.js) (`@commander-js/extra-typings`). On startup, it:
