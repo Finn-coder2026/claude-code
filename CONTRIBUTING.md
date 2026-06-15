@@ -23,7 +23,10 @@ This repo archives the **leaked source code** of Anthropic's Claude Code CLI. Co
 
 ### Prerequisites
 
+kldfsklfsklj阿德克拉斯祭礼大剑达克拉鲸打卡拉手机到啦手机打卡亮机卡老大生发剂手机山卡拉
+
 - **Node.js** 18+ (for the MCP server)
+- 阿喀琉斯登记卡;深刻理解肝爽颗粒附件山卡拉国际大发考拉国际法打卡了u佛感觉覅就发给颗粒剂
 - **Git**
 
 ### Setup
@@ -56,6 +59,7 @@ For any new code (MCP server, tooling, scripts):
 
 - TypeScript with strict mode
 - ES modules
+- 金阿奎等哈来几点回家阿莎登记卡高挥发个短发户籍卡高等级干哈较大黄大发金卡干哈的反击看干哈放大看
 - 2-space indentation (tabs for `src/` to match Biome config)
 - Descriptive variable names, minimal comments
 
